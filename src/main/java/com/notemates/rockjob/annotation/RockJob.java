@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Component
 public @interface RockJob {
     String jobTitle();
-    boolean async();
+    boolean async() default false;
 }
