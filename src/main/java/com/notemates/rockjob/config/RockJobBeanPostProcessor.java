@@ -9,12 +9,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.lang.annotation.Annotation;
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 @Configuration
 public class RockJobBeanPostProcessor implements BeanPostProcessor {
-    private Map<String, RockJobRunnable> jobs = new HashMap<>();
+    private Map<String, Entry<Boolean, RockJobRunnable>> jobs = new HashMap<>();
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -24,17 +26,18 @@ public class RockJobBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         for (Annotation annotation : bean.getClass().getAnnotations()) {
-            if (annotation.annotationType().equals(RockJob.class) && bean instanceof RockJobRunnable){
+            if (annotation.annotationType().equals(RockJob.class) && bean instanceof RockJobRunnable) {
                 RockJob oyperJobAnnotation = (RockJob) annotation;
                 String jobTitle = oyperJobAnnotation.jobTitle();
-                jobs.put(jobTitle, (RockJobRunnable) bean);
+                boolean async = oyperJobAnnotation.async();
+                jobs.put(jobTitle, new AbstractMap.SimpleEntry<>(async, (RockJobRunnable) bean));
             }
         }
         return bean;
     }
 
     @Bean
-    public RockJobManager rockJobManager(){
+    public RockJobManager rockJobManager() {
         return new RockJobManager(jobs);
     }
 }
