@@ -1,4 +1,4 @@
-package com.notemates.rockjob.exception;
+package com.oyper.rockjob.exception;
 
 public class RockJobException extends RuntimeException {
     public RockJobException() {

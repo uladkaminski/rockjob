@@ -1,4 +1,4 @@
-group 'com.notemates'
+group 'com.oyper'
 version '1.0-RELEASE'
 
 apply plugin: 'java'

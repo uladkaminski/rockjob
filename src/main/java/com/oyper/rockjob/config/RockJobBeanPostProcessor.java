@@ -1,8 +1,8 @@
-package com.notemates.rockjob.config;
+package com.oyper.rockjob.config;
 
-import com.notemates.rockjob.annotation.RockJob;
-import com.notemates.rockjob.job.RockJobRunnable;
-import com.notemates.rockjob.resolver.RockJobManager;
+import com.oyper.rockjob.annotation.RockJob;
+import com.oyper.rockjob.job.RockJobRunnable;
+import com.oyper.rockjob.resolver.RockJobManager;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;

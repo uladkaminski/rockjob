@@ -1,4 +1,4 @@
-package com.notemates.rockjob.annotation;
+package com.oyper.rockjob.annotation;
 
 import org.springframework.stereotype.Component;
 

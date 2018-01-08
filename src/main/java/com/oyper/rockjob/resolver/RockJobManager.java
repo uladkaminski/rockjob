@@ -1,8 +1,8 @@
-package com.notemates.rockjob.resolver;
+package com.oyper.rockjob.resolver;
 
-import com.notemates.rockjob.exception.NoSuchJobException;
-import com.notemates.rockjob.exception.RockJobException;
-import com.notemates.rockjob.job.RockJobRunnable;
+import com.oyper.rockjob.exception.NoSuchJobException;
+import com.oyper.rockjob.exception.RockJobException;
+import com.oyper.rockjob.job.RockJobRunnable;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,7 +18,9 @@ public class RockJobManager {
         if (!jobs.containsKey(jobId)) {
             throw new NoSuchJobException("Job with id " + jobId + " does not exist");
         }
+
         Entry<Boolean, RockJobRunnable> jobEntry = jobs.get(jobId);
+
         if (jobEntry.getKey()) {
             new Thread(() -> {
                 try {
@@ -30,7 +32,5 @@ public class RockJobManager {
         } else {
             jobEntry.getValue().runJob();
         }
-
-
     }
 }
