@@ -1,6 +1,7 @@
 package com.oyper.rockjob.config;
 
 import com.oyper.rockjob.annotation.RockJob;
+import com.oyper.rockjob.exception.RockJobException;
 import com.oyper.rockjob.job.RockJobRunnable;
 import com.oyper.rockjob.resolver.RockJobManager;
 import org.springframework.beans.BeansException;
@@ -26,10 +27,13 @@ public class RockJobBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         for (Annotation annotation : bean.getClass().getAnnotations()) {
-            if (annotation.annotationType().equals(RockJob.class) && bean instanceof RockJobRunnable) {
+            if (annotation.annotationType().equals(RockJob.class) ) {
                 RockJob oyperJobAnnotation = (RockJob) annotation;
                 String jobTitle = oyperJobAnnotation.jobTitle();
                 boolean async = oyperJobAnnotation.async();
+                if (!(bean instanceof RockJobRunnable)){
+                    throw new RockJobException("RockJob " + jobTitle + " does not implement RockJobRunnable interface");
+                }
                 jobs.put(jobTitle, new AbstractMap.SimpleEntry<>(async, (RockJobRunnable) bean));
             }
         }
