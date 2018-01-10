@@ -34,6 +34,9 @@ public class RockJobBeanPostProcessor implements BeanPostProcessor {
                 if (!(bean instanceof RockJobRunnable)){
                     throw new RockJobException("RockJob " + jobTitle + " does not implement RockJobRunnable interface");
                 }
+                if (jobs.containsKey(jobTitle)){
+                    throw new RockJobException("RockJob " + jobTitle + " has been duplicated");
+                }
                 jobs.put(jobTitle, new AbstractMap.SimpleEntry<>(async, (RockJobRunnable) bean));
             }
         }
