@@ -1,5 +1,5 @@
 group 'com.oyper'
-version '0.1'
+version '0.1-RELEASE'
 
 
 apply plugin: 'java'
@@ -35,7 +35,7 @@ uploadArchives {
                 name 'rockjob'
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description 'library for easy execution jobs'
+                description 'library for easy job execution'
                 url 'https://github.com/uladkaminski/rockjob'
 
                 scm {
