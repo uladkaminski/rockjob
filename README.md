@@ -7,6 +7,14 @@ To add rockjob's beans to your context add to your `@ComponenetScan` package wit
 @ComponentScan(basePackages = "com.oyper")
 ```
 
+or just use alias annotation
+
+```
+@EnableRockJob
+```
+
+
+
 To create new job your class should implement `RockJobRunnable` interface. 
 Also mark your class with `@RunJob` annotation with `jobTitle` unique name. 
 To run job asynchronously use attribute `anyc` in `@RunJob` annotation.

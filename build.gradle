@@ -47,7 +47,7 @@ uploadArchives {
                 name 'rockjob'
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description 'library for easy job execution'
+                description 'Library for easy job execution'
                 url 'https://github.com/uladkaminski/rockjob'
 
                 scm {
